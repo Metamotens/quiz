@@ -1,0 +1,12 @@
+<h3 [innerHTML]="question()?.question"></h3>
+
+@for (answer of question()?.answers; track $index) {
+<p (click)="handleCheck(answer, $index)" [innerHTML]="answer" [ngClass]="{
+            'correct': question()?.correct_answer === answer && selectedIndex() !== null,
+            'incorrect': question()?.correct_answer !== answer && $index === selectedIndex(),
+        }"></p>
+}
+
+@if (selectedIndex() !== null) {
+<button type="button" (click)="handleNext()">Next</button>
+}
