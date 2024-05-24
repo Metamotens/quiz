@@ -1,12 +1,10 @@
-@defer (when store.questions()) {
-@if (!store.isLastQuestion()) {
-<app-questions [question]="store.question()" [isLastQuestion]="store.isLastQuestion()" (check)="check($event)"
-    (next)="next()" />
-} @else {
-<app-results [score]="store.score()" (reset)="reset()" />
-}
-} @placeholder {
-<div>loading...</div>
-} @error {
-<div>error...</div>
-}
+<section class="flex h-full items-center justify-center">
+
+    @if (!store.isLastQuestion()) {
+    <app-questions [question]="store.question()" [isLastQuestion]="store.isLastQuestion()" (check)="check($event)"
+        (next)="next()" />
+    } @else if (store.isLastQuestion() && store.loading()) {
+    <app-results [score]="store.score()" (reset)="reset()" />
+    }
+
+</section>

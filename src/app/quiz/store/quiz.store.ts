@@ -28,7 +28,7 @@ export const QuizStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
     withComputed((store) => ({
-        loading: computed(() => store.questions()),
+        loading: computed(() => store.questions().length !== 0),
         isLastQuestion: computed(() => store.index() === store.questions().length),
         score: computed(() => store.correctAnswers() / store.questions().length * 100)
     })),
